@@ -247,6 +247,14 @@ MonoBehaviour:
   dungeonRoom: {fileID: 9222443071793408666, guid: 3efddaf4449efc0428bda333fd29b824, type: 3}
   corridorNS: {fileID: 2274428035779418734, guid: d4b4a3207f3d58444a8b2c34f0b450ab, type: 3}
   corridorEW: {fileID: 5003669818556995443, guid: a1b5d6ebdce5a2644bbece27b663874a, type: 3}
+  numberOfRooms: 0
+  doorTop: 0
+  doorBottom: 0
+  doorLeft: 0
+  doorRight: 0
+  pos: {x: 0, y: 0, z: 0}
+  dungeonX: 0
+  dungeonZ: 0
 --- !u!4 &833704365
 Transform:
   m_ObjectHideFlags: 0
