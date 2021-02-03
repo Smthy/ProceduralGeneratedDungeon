@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 505028855}
   - component: {fileID: 505028854}
   - component: {fileID: 505028853}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorTops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,6 +95,98 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &536834628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 536834629}
+  - component: {fileID: 536834630}
+  m_Layer: 8
+  m_Name: Point Light (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &536834629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536834628}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: -4.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9222443071793408670}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &536834630
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536834628}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 30
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &612057265
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +199,7 @@ GameObject:
   - component: {fileID: 612057269}
   - component: {fileID: 612057268}
   - component: {fileID: 612057267}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +294,7 @@ GameObject:
   - component: {fileID: 657403960}
   - component: {fileID: 657403959}
   - component: {fileID: 657403958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorTops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +389,7 @@ GameObject:
   - component: {fileID: 736559254}
   - component: {fileID: 736559253}
   - component: {fileID: 736559252}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorTops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +484,7 @@ GameObject:
   - component: {fileID: 777425141}
   - component: {fileID: 777425140}
   - component: {fileID: 777425139}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,7 +579,7 @@ GameObject:
   - component: {fileID: 863502046}
   - component: {fileID: 863502045}
   - component: {fileID: 863502044}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NorthDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +674,7 @@ GameObject:
   - component: {fileID: 901827626}
   - component: {fileID: 901827625}
   - component: {fileID: 901827624}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +769,7 @@ GameObject:
   - component: {fileID: 986965538}
   - component: {fileID: 986965537}
   - component: {fileID: 986965536}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,7 +864,7 @@ GameObject:
   - component: {fileID: 1221023088}
   - component: {fileID: 1221023087}
   - component: {fileID: 1221023086}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SouthDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -867,7 +959,7 @@ GameObject:
   - component: {fileID: 1241282072}
   - component: {fileID: 1241282071}
   - component: {fileID: 1241282070}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EastDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -962,7 +1054,7 @@ GameObject:
   - component: {fileID: 1304287521}
   - component: {fileID: 1304287520}
   - component: {fileID: 1304287519}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1057,7 +1149,7 @@ GameObject:
   - component: {fileID: 1325665279}
   - component: {fileID: 1325665278}
   - component: {fileID: 1325665277}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WestDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1140,6 +1232,98 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1444386672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1444386673}
+  - component: {fileID: 1444386674}
+  m_Layer: 8
+  m_Name: Point Light (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1444386673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444386672}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 4.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9222443071793408670}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &1444386674
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444386672}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 30
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &1576585518
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,7 +1336,7 @@ GameObject:
   - component: {fileID: 1576585522}
   - component: {fileID: 1576585521}
   - component: {fileID: 1576585520}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1247,7 +1431,7 @@ GameObject:
   - component: {fileID: 1938467549}
   - component: {fileID: 1938467548}
   - component: {fileID: 1938467547}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorTops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1342,7 +1526,7 @@ GameObject:
   - component: {fileID: 1955648591}
   - component: {fileID: 1955648590}
   - component: {fileID: 1955648589}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1425,6 +1609,98 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2047317391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2047317392}
+  - component: {fileID: 2047317393}
+  m_Layer: 8
+  m_Name: Point Light (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2047317392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047317391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.5, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9222443071793408670}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &2047317393
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047317391}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 2
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 30
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &2126795290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1713,7 @@ GameObject:
   - component: {fileID: 2126795294}
   - component: {fileID: 2126795293}
   - component: {fileID: 2126795292}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1530,7 +1806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5105299295076903506}
   - component: {fileID: 5005549094225296347}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CollisionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1573,7 +1849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 935281123164689971}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RayCastSender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1604,7 +1880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3052331421708051890}
   - component: {fileID: 8667666884063159944}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1619,7 +1895,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8751017995192653175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -4.5, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9222443071793408670}
@@ -1698,7 +1974,8 @@ GameObject:
   - component: {fileID: 9222443071793408671}
   - component: {fileID: 9222443071793408664}
   - component: {fileID: 9222443071793408665}
-  m_Layer: 0
+  - component: {fileID: 732223957}
+  m_Layer: 8
   m_Name: Room4Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1735,6 +2012,9 @@ Transform:
   - {fileID: 5105299295076903506}
   - {fileID: 935281123164689971}
   - {fileID: 3052331421708051890}
+  - {fileID: 2047317392}
+  - {fileID: 1444386673}
+  - {fileID: 536834629}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1801,3 +2081,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &732223957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9222443071793408666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639866d2113c5ec448263b2a7491c7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorways: []
+  boxCol: {fileID: 0}
