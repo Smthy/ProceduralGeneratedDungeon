@@ -5,7 +5,7 @@ using UnityEngine;
 public class Dungeon : MonoBehaviour
 {
     public Doorways[] doorways;
-    public MeshCollider meshCol;
+    public BoxCollider meshCol;
 
     public Bounds DungeonBounds
     {

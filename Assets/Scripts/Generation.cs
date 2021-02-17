@@ -16,6 +16,8 @@ public class Generation : MonoBehaviour
 
     LayerMask dunLayer;
 
+    bool dunCol = false;
+
     private void Awake()
     {
          dunLayer = LayerMask.GetMask("Dungeon");
@@ -34,17 +36,18 @@ public class Generation : MonoBehaviour
         yield return starting;
 
         StartDungeonPlacement();
-        yield return interval;
+        yield return new WaitForSeconds(0.1f);
 
         int iterations = Random.Range((int)iterationRange.x, (int)iterationRange.y);
 
         for(int i = 0; i < iterations; i++)
         {
             RoomPlacement();
-            yield return interval; 
+            yield return new WaitForSeconds(0.1f);
         }
-        //EndDungeonPlacement();
-        yield return interval;
+        
+        EndDungeonPlacement();
+        yield return new WaitForSeconds(0.1f);
 
         yield return new WaitForSeconds(5);
         StopCoroutine("DungeonGeneration");
@@ -90,7 +93,7 @@ public class Generation : MonoBehaviour
 
                 if(CheckDungeonOverLap(currentDungeon))
                 {
-                    continue;
+                    continue;                    
                 }
 
                 dungeonPlaced = true;
@@ -102,21 +105,20 @@ public class Generation : MonoBehaviour
                 freeDoorway.gameObject.SetActive(false);
                 freeDoorways.Remove(freeDoorway);
 
-                break;
+                break;               
             }
 
-            if(dungeonPlaced)
+            if (dungeonPlaced)
             {
                 break;
             }
         }
-
+        
         if(!dungeonPlaced)
         {
             Destroy(currentDungeon.gameObject);
-            ResetGeneration();
+            return;
         }
-
     }
 
     void PositionDungeonAtDoor(ref Dungeon dungeon, Doorways dungeonDoorway, Doorways targetDoorway)
@@ -140,9 +142,8 @@ public class Generation : MonoBehaviour
     bool CheckDungeonOverLap(Dungeon dungeon)
     {
         Bounds bounds = dungeon.DungeonBounds;
-        bounds.Expand(-0.1f);
 
-        Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.size / 2, dungeon.transform.rotation, dunLayer);
+        Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.size / 2, Quaternion.identity, dunLayer);
         if(colliders.Length > 0)
         {
             foreach(Collider col in colliders)
@@ -153,14 +154,13 @@ public class Generation : MonoBehaviour
                 }
                 else
                 {
-                    print("COLLISION");
+                    print("COLLISION");                     
                     return true;
                 }
             }
         }
-
         return false;
-    }
+    }   
 
     void EndDungeonPlacement()
     {
@@ -171,14 +171,41 @@ public class Generation : MonoBehaviour
         List<Doorways> AllfreeDoorways = new List<Doorways>(freeDoorways);
         Doorways doorways = endDungeon.doorways[0];
 
-        bool roomPlaced = false;
+        bool dungeonPlaced = false;
 
+        foreach (Doorways freeDoorway in AllfreeDoorways)
+        {
+            Dungeon dungeon = (Dungeon)endDungeon;
+            PositionDungeonAtDoor(ref dungeon, doorways, freeDoorway);
+
+            if (CheckDungeonOverLap(endDungeon))
+            {
+                continue;
+            }
+
+            dungeonPlaced = true;
+
+            doorways.gameObject.SetActive(false);
+            freeDoorways.Remove(doorways);
+
+            freeDoorway.gameObject.SetActive(false);
+            freeDoorways.Remove(freeDoorway);
+
+            break;
+        }
+
+        if(!dungeonPlaced)
+        {
+            ResetGeneration();
+        }
+
+        
     }
 
     void ResetGeneration()
     {
         StopCoroutine("DungeonGeneration");
-        StopCoroutine("DungeonGeneration");
+        StartCoroutine("DungeonGeneration");
     }
    
 
