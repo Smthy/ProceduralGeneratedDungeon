@@ -8,7 +8,7 @@ public class Doorways : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, transform.rotation * Vector3.forward);
 
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.cyan;
         Gizmos.DrawRay(ray);
     }
 

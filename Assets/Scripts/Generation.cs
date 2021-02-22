@@ -16,8 +16,6 @@ public class Generation : MonoBehaviour
 
     LayerMask dunLayer;
 
-    bool dunCol = false;
-
     private void Awake()
     {
          dunLayer = LayerMask.GetMask("Dungeon");
@@ -36,18 +34,18 @@ public class Generation : MonoBehaviour
         yield return starting;
 
         StartDungeonPlacement();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForFixedUpdate();
 
         int iterations = Random.Range((int)iterationRange.x, (int)iterationRange.y);
 
         for(int i = 0; i < iterations; i++)
         {
             RoomPlacement();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForFixedUpdate();
         }
         
         EndDungeonPlacement();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForFixedUpdate();
 
         yield return new WaitForSeconds(5);
         StopCoroutine("DungeonGeneration");
@@ -91,12 +89,13 @@ public class Generation : MonoBehaviour
             {
                 PositionDungeonAtDoor(ref currentDungeon, currentDoorways, freeDoorway);
 
-                if(CheckDungeonOverLap(currentDungeon))
+                if (CheckDungeonOverLap(currentDungeon))
                 {
                     continue;                    
                 }
 
                 dungeonPlaced = true;
+
                 placedDungeons.Add(currentDungeon);
 
                 currentDoorways.gameObject.SetActive(false);
@@ -117,7 +116,7 @@ public class Generation : MonoBehaviour
         if(!dungeonPlaced)
         {
             Destroy(currentDungeon.gameObject);
-            return;
+            ResetGeneration();
         }
     }
 
@@ -141,25 +140,24 @@ public class Generation : MonoBehaviour
 
     bool CheckDungeonOverLap(Dungeon dungeon)
     {
-        Bounds bounds = dungeon.DungeonBounds;
-
-        Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.size / 2, Quaternion.identity, dunLayer);
-        if(colliders.Length > 0)
+        Collider[] hits = Physics.OverlapBox(dungeon.gameObject.transform.position, transform.localScale / 2, Quaternion.identity, dunLayer);
+        if(hits.Length >= 0)
         {
-            foreach(Collider col in colliders)
+            foreach(Collider c in hits)
             {
-                if (col.transform.parent.gameObject.Equals(dungeon.gameObject))
+                if (c.transform.gameObject.Equals(dungeon.gameObject))
                 {
                     continue;
                 }
                 else
                 {
-                    print("COLLISION");                     
+                    Debug.LogError("Overlap detected");
                     return true;
                 }
             }
         }
-        return false;
+
+        return false;       
     }   
 
     void EndDungeonPlacement()
@@ -197,18 +195,31 @@ public class Generation : MonoBehaviour
         if(!dungeonPlaced)
         {
             ResetGeneration();
-        }
-
-        
+        }        
     }
 
     void ResetGeneration()
     {
         StopCoroutine("DungeonGeneration");
+
+        if (startDungeon)
+        {
+            Destroy(startDungeon.gameObject);
+        }
+
+        if (endDungeon)
+        {
+            Destroy(endDungeon.gameObject);
+        }
+
+        foreach (Dungeon dungeon in placedDungeons)
+        {
+            Destroy(dungeon.gameObject);
+        }
+
+        freeDoorways.Clear();
+
         StartCoroutine("DungeonGeneration");
+        
     }
-   
-
-
-
 }
