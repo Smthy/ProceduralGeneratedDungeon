@@ -29,8 +29,6 @@ public class Generation : MonoBehaviour
     IEnumerator DungeonGeneration()
     {
         WaitForSeconds starting = new WaitForSeconds(0.5f);
-        WaitForFixedUpdate interval = new WaitForFixedUpdate();
-
         yield return starting;
 
         StartDungeonPlacement();
@@ -47,8 +45,10 @@ public class Generation : MonoBehaviour
         EndDungeonPlacement();
         yield return new WaitForFixedUpdate();
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1f);
         StopCoroutine("DungeonGeneration");
+
+        ResetGeneration();
     }
 
     void StartDungeonPlacement()
@@ -200,8 +200,11 @@ public class Generation : MonoBehaviour
 
     void ResetGeneration()
     {
+        Debug.LogError("Reset level generator");
+
         StopCoroutine("DungeonGeneration");
 
+        // Delete all rooms
         if (startDungeon)
         {
             Destroy(startDungeon.gameObject);
@@ -217,9 +220,12 @@ public class Generation : MonoBehaviour
             Destroy(dungeon.gameObject);
         }
 
+        // Clear lists
+        placedDungeons.Clear();
         freeDoorways.Clear();
 
+        // Reset coroutine
         StartCoroutine("DungeonGeneration");
-        
+
     }
 }
