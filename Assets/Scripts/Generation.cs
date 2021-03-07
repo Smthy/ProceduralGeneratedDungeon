@@ -48,7 +48,7 @@ public class Generation : MonoBehaviour
         yield return new WaitForSeconds(1f);
         StopCoroutine("DungeonGeneration");
 
-        ResetGeneration();
+        ResetGeneration(); //--- Used to show different maps being made
     }
 
     void StartDungeonPlacement()
@@ -59,7 +59,6 @@ public class Generation : MonoBehaviour
 
         startDungeon.transform.position = Vector3.zero;
         startDungeon.transform.rotation = Quaternion.identity;
-
     }
     void DoorWayAdd(Dungeon dungeon, ref List<Doorways> list)
     {
@@ -204,7 +203,7 @@ public class Generation : MonoBehaviour
 
         StopCoroutine("DungeonGeneration");
 
-        // Delete all rooms
+        
         if (startDungeon)
         {
             Destroy(startDungeon.gameObject);
@@ -219,12 +218,11 @@ public class Generation : MonoBehaviour
         {
             Destroy(dungeon.gameObject);
         }
-
-        // Clear lists
+                
         placedDungeons.Clear();
         freeDoorways.Clear();
 
-        // Reset coroutine
+        
         StartCoroutine("DungeonGeneration");
 
     }
