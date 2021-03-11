@@ -4,11 +4,5 @@ using UnityEngine;
 
 public class Dungeon : MonoBehaviour
 {
-    public Doorways[] doorways;
-    public MeshCollider meshCol;
-
-    public Bounds DungeonBounds
-    {
-        get { return meshCol.bounds; }
-    }
+    public Doorways[] doorways;     
 }

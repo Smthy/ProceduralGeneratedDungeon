@@ -3,52 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Generation : MonoBehaviour
-{
-    public Dungeon startDungeonPre, endDungeonPre;
+{      
+    public int dungeonMin, dungeonMax;
+    
     public List<Dungeon> dungeonRooms = new List<Dungeon>();
-    public Vector2 iterationRange = new Vector2(3, 10);
-
+    List<Dungeon> placedDungeons = new List<Dungeon>();
     List<Doorways> freeDoorways = new List<Doorways>();
 
+    public Dungeon startDungeonPre, endDungeonPre;
     StarterRoom startDungeon;
     FinalRoom endDungeon;
-    List<Dungeon> placedDungeons = new List<Dungeon>();
+
+    public GameObject player;
 
     LayerMask dunLayer;
 
     private void Awake()
     {
-         dunLayer = LayerMask.GetMask("Dungeon");
+        dunLayer = LayerMask.GetMask("Dungeon");
     }
 
     void Start()
-    {
+    {       
         StartCoroutine("DungeonGeneration");
     }
 
     IEnumerator DungeonGeneration()
     {
-        WaitForSeconds starting = new WaitForSeconds(0.5f);
-        yield return starting;
+        yield return new WaitForSeconds(0.1f);
+        StartDungeonPlacement();       
+        int iterations = Random.Range(dungeonMin, dungeonMax);
 
-        StartDungeonPlacement();
-        yield return new WaitForFixedUpdate();
-
-        int iterations = Random.Range((int)iterationRange.x, (int)iterationRange.y);
-
-        for(int i = 0; i < iterations; i++)
+        for(int x = 0; x < iterations; x++)
         {
             RoomPlacement();
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate(); //allows the physics to update, otherwise the rooms aren't generated properly
         }
-        
-        EndDungeonPlacement();
-        yield return new WaitForFixedUpdate();
-
+        FinalDungeonPlacement();
         yield return new WaitForSeconds(1f);
-        StopCoroutine("DungeonGeneration");
 
-        ResetGeneration(); //--- Used to show different maps being made
+        player.SetActive(true);
+
+        StopCoroutine("DungeonGeneration");
+        //ResetGeneration(); //--- Used to show different maps being made
     }
 
     void StartDungeonPlacement()
@@ -69,6 +66,7 @@ public class Generation : MonoBehaviour
         }
     }
 
+    //
     void RoomPlacement()
     {
         Dungeon currentDungeon = Instantiate(dungeonRooms[Random.Range(0, dungeonRooms.Count)]) as Dungeon;
@@ -76,8 +74,8 @@ public class Generation : MonoBehaviour
 
         List<Doorways> AllfreeDoorways = new List<Doorways>(freeDoorways);
         List<Doorways> currentDungeonDoorWays = new List<Doorways>();
-        DoorWayAdd(currentDungeon, ref currentDungeonDoorWays);
 
+        DoorWayAdd(currentDungeon, ref currentDungeonDoorWays);
         DoorWayAdd(currentDungeon, ref freeDoorways);
 
         bool dungeonPlaced = false;
@@ -94,12 +92,9 @@ public class Generation : MonoBehaviour
                 }
 
                 dungeonPlaced = true;
-
                 placedDungeons.Add(currentDungeon);
-
                 currentDoorways.gameObject.SetActive(false);
                 freeDoorways.Remove(currentDoorways);
-
                 freeDoorway.gameObject.SetActive(false);
                 freeDoorways.Remove(freeDoorway);
 
@@ -124,16 +119,16 @@ public class Generation : MonoBehaviour
         dungeon.transform.position = Vector3.zero;
         dungeon.transform.rotation = Quaternion.identity;
 
-        Vector3 targetDoorwayEuler = targetDoorway.transform.eulerAngles;
-        Vector3 dungeonDoorwayEuler = dungeonDoorway.transform.eulerAngles;
+        Vector3 targetDoorwayAngle = targetDoorway.transform.eulerAngles;
+        Vector3 dungeonDoorwayAngle = dungeonDoorway.transform.eulerAngles;
         
-        float deltaAngle = Mathf.DeltaAngle(dungeonDoorwayEuler.y, targetDoorwayEuler.y);
-        Quaternion currentRoomRotation = Quaternion.AngleAxis(deltaAngle, Vector3.up);
+        float angle = Mathf.DeltaAngle(dungeonDoorwayAngle.y, targetDoorwayAngle.y);
+        Quaternion currentRoomRotation = Quaternion.AngleAxis(angle, Vector3.up);
 
         dungeon.transform.rotation = currentRoomRotation * Quaternion.Euler(0, 180f, 0);
 
-        Vector3 dungeonPositionOffset = dungeonDoorway.transform.position - dungeon.transform.position;
-        dungeon.transform.position = targetDoorway.transform.position - dungeonPositionOffset;
+        Vector3 dungeonOffset = dungeonDoorway.transform.position - dungeon.transform.position;
+        dungeon.transform.position = targetDoorway.transform.position - dungeonOffset;
 
     }
 
@@ -142,15 +137,15 @@ public class Generation : MonoBehaviour
         Collider[] hits = Physics.OverlapBox(dungeon.gameObject.transform.position, transform.localScale / 2, Quaternion.identity, dunLayer);
         if(hits.Length >= 0)
         {
-            foreach(Collider c in hits)
+            foreach(Collider floorCollision in hits)
             {
-                if (c.transform.gameObject.Equals(dungeon.gameObject))
+                if (floorCollision.transform.gameObject.Equals(dungeon.gameObject))
                 {
                     continue;
                 }
                 else
                 {
-                    Debug.LogError("Overlap detected");
+                    Debug.Log("Collision " +transform.position);
                     return true;
                 }
             }
@@ -159,7 +154,7 @@ public class Generation : MonoBehaviour
         return false;       
     }   
 
-    void EndDungeonPlacement()
+    void FinalDungeonPlacement()
     {
         endDungeon = Instantiate(endDungeonPre) as FinalRoom;
         endDungeon.transform.parent = this.transform;
@@ -199,8 +194,7 @@ public class Generation : MonoBehaviour
 
     void ResetGeneration()
     {
-        Debug.LogError("Reset level generator");
-
+        Debug.LogError("Level Generation Restarted");
         StopCoroutine("DungeonGeneration");
 
         
