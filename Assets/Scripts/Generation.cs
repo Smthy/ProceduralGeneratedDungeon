@@ -5,6 +5,7 @@ using UnityEngine;
 public class Generation : MonoBehaviour
 {      
     public int dungeonMin, dungeonMax;
+    public Camera cam;
     
     public List<Dungeon> dungeonRooms = new List<Dungeon>();
     List<Dungeon> placedDungeons = new List<Dungeon>();
@@ -20,6 +21,9 @@ public class Generation : MonoBehaviour
 
     private void Awake()
     {
+        player.SetActive(false);
+        cam.enabled = true;
+
         dunLayer = LayerMask.GetMask("Dungeon");
     }
 
@@ -43,6 +47,7 @@ public class Generation : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         player.SetActive(true);
+        cam.enabled = false;
 
         StopCoroutine("DungeonGeneration");
         //ResetGeneration(); //--- Used to show different maps being made
@@ -216,7 +221,10 @@ public class Generation : MonoBehaviour
         placedDungeons.Clear();
         freeDoorways.Clear();
 
-        
+        player.SetActive(false);
+        cam.enabled = true;
+
+
         StartCoroutine("DungeonGeneration");
 
     }

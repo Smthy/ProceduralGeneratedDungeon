@@ -17,9 +17,9 @@ TagManager:
   - Dungeon
   - PostProcessing
   - Ground
-  - 
-  - 
-  - 
+  - Player
+  - Doors
+  - Walls
   - 
   - 
   - 
