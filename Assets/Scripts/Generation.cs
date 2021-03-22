@@ -5,7 +5,6 @@ using UnityEngine;
 public class Generation : MonoBehaviour
 {      
     public int dungeonMin, dungeonMax;
-    public Camera cam;
     
     public List<Dungeon> dungeonRooms = new List<Dungeon>();
     List<Dungeon> placedDungeons = new List<Dungeon>();
@@ -16,20 +15,38 @@ public class Generation : MonoBehaviour
     FinalRoom endDungeon;
 
     public GameObject player;
+    public Camera cam;
 
     LayerMask dunLayer;
 
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         player.SetActive(false);
         cam.enabled = true;
-
         dunLayer = LayerMask.GetMask("Dungeon");
     }
 
     void Start()
     {       
         StartCoroutine("DungeonGeneration");
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(Cursor.lockState == CursorLockMode.Locked)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            if (Cursor.lockState == CursorLockMode.None)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
     }
 
     IEnumerator DungeonGeneration()
@@ -71,7 +88,6 @@ public class Generation : MonoBehaviour
         }
     }
 
-    //
     void RoomPlacement()
     {
         Dungeon currentDungeon = Instantiate(dungeonRooms[Random.Range(0, dungeonRooms.Count)]) as Dungeon;
