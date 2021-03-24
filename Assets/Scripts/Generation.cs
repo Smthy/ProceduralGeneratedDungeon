@@ -11,6 +11,7 @@ public class Generation : MonoBehaviour
     List<Doorways> freeDoorways = new List<Doorways>();
 
     public Dungeon startDungeonPre, endDungeonPre;
+    Dungeon recentDungeon, currentDungeon;
     StarterRoom startDungeon;
     FinalRoom endDungeon;
 
@@ -63,11 +64,11 @@ public class Generation : MonoBehaviour
         FinalDungeonPlacement();
         yield return new WaitForSeconds(1f);
 
-        player.SetActive(true);
-        cam.enabled = false;
+        //player.SetActive(true);
+        //cam.enabled = false;
 
         StopCoroutine("DungeonGeneration");
-        //ResetGeneration(); //--- Used to show different maps being made
+        ResetGeneration(); //--- Used to show different maps being made
     }
 
     void StartDungeonPlacement()
@@ -89,8 +90,10 @@ public class Generation : MonoBehaviour
     }
 
     void RoomPlacement()
-    {
-        Dungeon currentDungeon = Instantiate(dungeonRooms[Random.Range(0, dungeonRooms.Count)]) as Dungeon;
+    {        
+               
+        currentDungeon = Instantiate(dungeonRooms[Random.Range(0, dungeonRooms.Count)]) as Dungeon;        
+
         currentDungeon.transform.parent = this.transform;
 
         List<Doorways> AllfreeDoorways = new List<Doorways>(freeDoorways);
@@ -113,6 +116,7 @@ public class Generation : MonoBehaviour
                 }
 
                 dungeonPlaced = true;
+                recentDungeon = currentDungeon;
                 placedDungeons.Add(currentDungeon);
                 currentDoorways.gameObject.SetActive(false);
                 freeDoorways.Remove(currentDoorways);
@@ -166,7 +170,7 @@ public class Generation : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Collision " +transform.position);
+                    //Debug.Log("Collision " +transform.position);
                     return true;
                 }
             }
@@ -215,7 +219,7 @@ public class Generation : MonoBehaviour
 
     void ResetGeneration()
     {
-        Debug.LogError("Level Generation Restarted");
+       // Debug.LogError("Level Generation Restarted");
         StopCoroutine("DungeonGeneration");
 
         
