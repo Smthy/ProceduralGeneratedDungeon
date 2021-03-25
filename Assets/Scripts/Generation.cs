@@ -16,7 +16,7 @@ public class Generation : MonoBehaviour
     FinalRoom endDungeon;
 
     public GameObject player;
-    public Camera cam;
+    public Camera cam, mini;
 
     LayerMask dunLayer;
 
@@ -64,11 +64,11 @@ public class Generation : MonoBehaviour
         FinalDungeonPlacement();
         yield return new WaitForSeconds(1f);
 
-        //player.SetActive(true);
-        //cam.enabled = false;
+        player.SetActive(true);
+        cam.enabled = false;
 
         StopCoroutine("DungeonGeneration");
-        ResetGeneration(); //--- Used to show different maps being made
+        //ResetGeneration(); //--- Used to show different maps being made
     }
 
     void StartDungeonPlacement()
