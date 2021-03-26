@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Generation : MonoBehaviour
 {      
@@ -16,7 +17,9 @@ public class Generation : MonoBehaviour
     FinalRoom endDungeon;
 
     public GameObject player;
-    public Camera cam, mini;
+    public Camera cam;
+
+    public Canvas canvas;
 
     LayerMask dunLayer;
 
@@ -27,6 +30,7 @@ public class Generation : MonoBehaviour
 
         player.SetActive(false);
         cam.enabled = true;
+        canvas.enabled = false;
         dunLayer = LayerMask.GetMask("Dungeon");
     }
 
@@ -66,6 +70,7 @@ public class Generation : MonoBehaviour
 
         player.SetActive(true);
         cam.enabled = false;
+        canvas.enabled = true;
 
         StopCoroutine("DungeonGeneration");
         //ResetGeneration(); //--- Used to show different maps being made
@@ -242,6 +247,7 @@ public class Generation : MonoBehaviour
         freeDoorways.Clear();
 
         player.SetActive(false);
+        canvas.enabled = false;
         cam.enabled = true;
 
 
