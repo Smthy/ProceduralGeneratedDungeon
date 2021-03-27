@@ -171,11 +171,12 @@ public class Generation : MonoBehaviour
             {
                 if (floorCollision.transform.gameObject.Equals(dungeon.gameObject))
                 {
+                    Debug.Log("No COllision");
                     continue;
                 }
                 else
                 {
-                    //Debug.Log("Collision " +transform.position);
+                    Debug.Log("Collision " +transform.position);
                     return true;
                 }
             }

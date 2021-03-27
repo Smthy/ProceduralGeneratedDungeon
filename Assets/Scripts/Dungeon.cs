@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Dungeon : MonoBehaviour
 {
-    public Doorways[] doorways;     
+    public Doorways[] doorways;
 }
