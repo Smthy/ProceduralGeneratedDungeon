@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Dungeon
   - Light
+  - Torch
   layers:
   - Default
   - TransparentFX

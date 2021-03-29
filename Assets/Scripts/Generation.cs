@@ -153,7 +153,8 @@ public class Generation : MonoBehaviour
         Vector3 dungeonDoorwayAngle = dungeonDoorway.transform.eulerAngles;
         
         float angle = Mathf.DeltaAngle(dungeonDoorwayAngle.y, targetDoorwayAngle.y);
-        Quaternion currentRoomRotation = Quaternion.AngleAxis(angle, Vector3.up);
+
+        Quaternion currentRoomRotation = Quaternion.AngleAxis(angle, -Vector3.down);
 
         dungeon.transform.rotation = currentRoomRotation * Quaternion.Euler(0, 180f, 0);
 
