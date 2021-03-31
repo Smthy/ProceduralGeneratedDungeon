@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Generation : MonoBehaviour
 {      
     public int dungeonMin, dungeonMax;
+
+    private Vector3 startPos = new Vector3(0f, 0f, 0f);
     
     public List<Dungeon> dungeonRooms = new List<Dungeon>();
     List<Dungeon> placedDungeons = new List<Dungeon>();
@@ -18,8 +21,9 @@ public class Generation : MonoBehaviour
 
     public GameObject player;
     public Camera cam;
-
     public Canvas canvas;
+
+    private Vector3 dungeonOffset, targetDoorwayAngle, dungeonDoorwayAngle;
 
     LayerMask dunLayer;
 
@@ -35,8 +39,11 @@ public class Generation : MonoBehaviour
     }
 
     void Start()
-    {       
+    {
+        RenderSettings.fog = false;
         StartCoroutine("DungeonGeneration");
+        
+
     }
 
     void Update()
@@ -68,12 +75,31 @@ public class Generation : MonoBehaviour
         FinalDungeonPlacement();
         yield return new WaitForSeconds(1f);
 
+        StartCoroutine("NavMeshFinder");
+
         player.SetActive(true);
         cam.enabled = false;
         canvas.enabled = true;
+        RenderSettings.fog = true;
 
         StopCoroutine("DungeonGeneration");
         //ResetGeneration(); //--- Used to show different maps being made
+    }
+
+    IEnumerator NavMeshFinder()
+    {
+        yield return new WaitForFixedUpdate();
+
+        NavMeshSurface[] surfaces = FindObjectsOfType<NavMeshSurface>();
+
+        for (int i = 0; i < surfaces.Length; i++)
+        {
+            surfaces[i].BuildNavMesh();
+            
+        }
+
+        print("Built");
+        StopCoroutine("NavMeshFinder");
     }
 
     void StartDungeonPlacement()
@@ -89,17 +115,14 @@ public class Generation : MonoBehaviour
     {
         foreach(Doorways doorways in dungeon.doorways)
         {
-            int r = Random.Range(0, list.Count);
-            list.Insert(r, doorways);
+            int doorwayNumber = Random.Range(0, list.Count);
+            list.Insert(doorwayNumber, doorways);
         }
     }
 
     void RoomPlacement()
-    {        
-               
-        currentDungeon = Instantiate(dungeonRooms[Random.Range(0, dungeonRooms.Count)]) as Dungeon;        
-
-        currentDungeon.transform.parent = this.transform;
+    {                       
+        currentDungeon = Instantiate(dungeonRooms[Random.Range(0, dungeonRooms.Count)]);        
 
         List<Doorways> AllfreeDoorways = new List<Doorways>(freeDoorways);
         List<Doorways> currentDungeonDoorWays = new List<Doorways>();
@@ -114,20 +137,22 @@ public class Generation : MonoBehaviour
             foreach(Doorways currentDoorways in currentDungeonDoorWays)
             {
                 PositionDungeonAtDoor(ref currentDungeon, currentDoorways, freeDoorway);
-
+               
                 if (CheckDungeonOverLap(currentDungeon))
                 {
-                    continue;                    
+                    continue;
                 }
+                
 
                 dungeonPlaced = true;
                 recentDungeon = currentDungeon;
                 placedDungeons.Add(currentDungeon);
+
                 currentDoorways.gameObject.SetActive(false);
                 freeDoorways.Remove(currentDoorways);
                 freeDoorway.gameObject.SetActive(false);
-                freeDoorways.Remove(freeDoorway);
 
+                freeDoorways.Remove(freeDoorway);               
                 break;               
             }
 
@@ -146,23 +171,22 @@ public class Generation : MonoBehaviour
 
     void PositionDungeonAtDoor(ref Dungeon dungeon, Doorways dungeonDoorway, Doorways targetDoorway)
     {
-        dungeon.transform.position = Vector3.zero;
+        dungeon.transform.position = startPos;
         dungeon.transform.rotation = Quaternion.identity;
 
-        Vector3 targetDoorwayAngle = targetDoorway.transform.eulerAngles;
-        Vector3 dungeonDoorwayAngle = dungeonDoorway.transform.eulerAngles;
+        targetDoorwayAngle = targetDoorway.transform.eulerAngles;
+        dungeonDoorwayAngle = dungeonDoorway.transform.eulerAngles;
         
-        float angle = Mathf.DeltaAngle(dungeonDoorwayAngle.y, targetDoorwayAngle.y);
+        float deltaAngle = Mathf.DeltaAngle(dungeonDoorwayAngle.y, targetDoorwayAngle.y);
+        Quaternion currentRoomRotation = Quaternion.AngleAxis(deltaAngle, -Vector3.down);
+        dungeon.transform.rotation = currentRoomRotation * Quaternion.Euler(0f, 180f, 0f);
 
-        Quaternion currentRoomRotation = Quaternion.AngleAxis(angle, -Vector3.down);
-
-        dungeon.transform.rotation = currentRoomRotation * Quaternion.Euler(0, 180f, 0);
-
-        Vector3 dungeonOffset = dungeonDoorway.transform.position - dungeon.transform.position;
+        dungeonOffset = dungeonDoorway.transform.position - dungeon.transform.position;
         dungeon.transform.position = targetDoorway.transform.position - dungeonOffset;
 
     }
 
+    
     bool CheckDungeonOverLap(Dungeon dungeon)
     {
         Collider[] hits = Physics.OverlapBox(dungeon.gameObject.transform.position, transform.localScale / 2, Quaternion.identity, dunLayer);
@@ -182,40 +206,44 @@ public class Generation : MonoBehaviour
                 }
             }
         }
-
-        return false;       
-    }   
+        return false;      
+    }
+    
 
     void FinalDungeonPlacement()
     {
         endDungeon = Instantiate(endDungeonPre) as FinalRoom;
         endDungeon.transform.parent = this.transform;
 
-
         List<Doorways> AllfreeDoorways = new List<Doorways>(freeDoorways);
         Doorways doorways = endDungeon.doorways[0];
-
         bool dungeonPlaced = false;
 
         foreach (Doorways freeDoorway in AllfreeDoorways)
         {
             Dungeon dungeon = (Dungeon)endDungeon;
             PositionDungeonAtDoor(ref dungeon, doorways, freeDoorway);
-
+            
             if (CheckDungeonOverLap(endDungeon))
             {
                 continue;
             }
-
+            
             dungeonPlaced = true;
 
             doorways.gameObject.SetActive(false);
             freeDoorways.Remove(doorways);
-
             freeDoorway.gameObject.SetActive(false);
             freeDoorways.Remove(freeDoorway);
+            
+            if(freeDoorways.Count == 4)
+            {
+                ResetGeneration();
+            }
 
             break;
+
+
         }
 
         if(!dungeonPlaced)
@@ -226,15 +254,12 @@ public class Generation : MonoBehaviour
 
     void ResetGeneration()
     {
-       // Debug.LogError("Level Generation Restarted");
         StopCoroutine("DungeonGeneration");
-
         
         if (startDungeon)
         {
             Destroy(startDungeon.gameObject);
         }
-
         if (endDungeon)
         {
             Destroy(endDungeon.gameObject);
@@ -247,11 +272,9 @@ public class Generation : MonoBehaviour
                 
         placedDungeons.Clear();
         freeDoorways.Clear();
-
         player.SetActive(false);
         canvas.enabled = false;
         cam.enabled = true;
-
 
         StartCoroutine("DungeonGeneration");
 

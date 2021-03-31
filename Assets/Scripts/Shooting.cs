@@ -45,7 +45,7 @@ public class Shooting : MonoBehaviour
             if (Input.GetKey(KeyCode.R))
             {
                 reload = true;
-                StartCoroutine(Reloading());
+                StartCoroutine("Reloading");
             }
 
             
@@ -61,13 +61,13 @@ public class Shooting : MonoBehaviour
         if (Physics.Raycast(FPS.transform.position, FPS.transform.forward, out hit, range, layer_mask))
         {
             Debug.Log(hit.transform.name);
-            /*
+            
             Enemy enemy = hit.transform.GetComponent<Enemy>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
             }
-            */
+            
         }
     }
 

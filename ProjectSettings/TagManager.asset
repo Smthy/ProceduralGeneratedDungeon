@@ -7,6 +7,7 @@ TagManager:
   - Dungeon
   - Light
   - Torch
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Player
   - Doors
   - Walls
-  - 
+  - Enemy
   - 
   - 
   - 
