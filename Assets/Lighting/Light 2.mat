@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Light 2
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -73,6 +73,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.15574935, g: 0.41280916, b: 0.9433962, a: 1}
+    - _Color: {r: 0.0025364957, g: 0.17561091, b: 0.5377358, a: 1}
     - _EmissionColor: {r: 0, g: 0.05031446, b: 0.7924528, a: 1}
   m_BuildTextureStacks: []

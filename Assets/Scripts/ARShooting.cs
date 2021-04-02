@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Shooting : MonoBehaviour
+public class ARShooting : MonoBehaviour
 {
     public float damage;
     public float range;
+    public float fireRate;
 
     public Camera FPS;
 
     public ParticleSystem muzzle;
 
-    public int maxAmmo = 16;
+    public int maxAmmo = 30;
     private int currentAmmo;
 
     public static bool reload;
     public float reloadSpeed;
 
     public Text ammoCount;
+    private float next = 0f;
+
+    public GameObject impact;
 
     private void Start()
     {
@@ -28,12 +32,10 @@ public class Shooting : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1") && !reload)
+        if (Input.GetButton("Fire1") && !reload && Time.time >= next)
         {
-
             if (currentAmmo <= 0)
             {
-                print("Reloading");
                 reload = true;
                 StartCoroutine("Reloading");
             }
@@ -41,6 +43,7 @@ public class Shooting : MonoBehaviour
             {
                 currentAmmo--;
                 ammoCount.text = (currentAmmo.ToString() + "/" + maxAmmo.ToString());
+                next = Time.time + 1f / fireRate;
                 Shoot();
             }
 
@@ -48,14 +51,14 @@ public class Shooting : MonoBehaviour
             {
                 reload = true;
                 StartCoroutine("Reloading");
-            }            
-        }
+            }
 
-        if(currentAmmo == 0)
-        {
-            Debug.Log("Reloading");
-            reload = true;
-            StartCoroutine("Reloading");
+            if (currentAmmo == 0)
+            {
+                Debug.Log("Reloading");
+                reload = true;
+                StartCoroutine("Reloading");
+            }
         }
     }
     void Shoot()
@@ -68,19 +71,20 @@ public class Shooting : MonoBehaviour
         if (Physics.Raycast(FPS.transform.position, FPS.transform.forward, out hit, range, layer_mask))
         {
             Debug.Log(hit.transform.name);
-            
+
             Enemy enemy = hit.transform.GetComponent<Enemy>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
-            }
-            
+            }            
         }
+
+        Instantiate(impact, hit.point, Quaternion.LookRotation(hit.normal));
     }
 
     IEnumerator Reloading()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         currentAmmo = maxAmmo;
         ammoCount.text = (currentAmmo.ToString() + "/" + maxAmmo.ToString());
         reload = false;

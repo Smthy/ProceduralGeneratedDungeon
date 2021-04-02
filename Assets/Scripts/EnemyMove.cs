@@ -10,6 +10,10 @@ public class EnemyMove : MonoBehaviour
 
     public bool travelling;
 
+    Vector3 targetVector;
+
+    public int damage = 15;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -17,9 +21,8 @@ public class EnemyMove : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        Vector3 targetVector;
+    void FixedUpdate()
+    {       
 
         if (player.activeSelf == true)
         {
@@ -29,6 +32,18 @@ public class EnemyMove : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage);
+            }
         }
     }
 }
