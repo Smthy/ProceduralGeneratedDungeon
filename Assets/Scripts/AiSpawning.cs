@@ -5,11 +5,15 @@ using UnityEngine;
 public class AiSpawning : MonoBehaviour
 {
     public GameObject door1, door2, door3, door4;
-    public Transform spawningPoint;
+    public GameObject[] corners;
+    private GameObject currentCorner;
+    private int index;
 
     public BoxCollider trigger;
 
-    public GameObject enemy;
+    public GameObject[] enemies;
+    private GameObject enemy;
+    private int enemyIndex;
 
     private int maxAmount;
     int amount;
@@ -50,7 +54,13 @@ public class AiSpawning : MonoBehaviour
     {
         for (int i = 0; i <= maxAmount; i++)
         {
-            Instantiate(enemy, spawningPoint.position, Quaternion.Euler(0, 0, 0));
+            index = Random.Range(0, corners.Length);
+            currentCorner = corners[index];
+            Vector3 spawningPoint = new Vector3(currentCorner.transform.position.x, currentCorner.transform.position.y, currentCorner.transform.position.z);
+
+            enemyIndex = Random.Range(0, enemies.Length);
+            enemy = enemies[enemyIndex];
+            Instantiate(enemy, spawningPoint, Quaternion.Euler(0, 0, 0));
         }        
     }      
 

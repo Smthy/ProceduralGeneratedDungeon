@@ -20,6 +20,8 @@ public class Shooting : MonoBehaviour
 
     public Text ammoCount;
 
+    public AudioSource reloading, shooting;
+
     private void Start()
     {
         currentAmmo = maxAmmo;
@@ -28,39 +30,37 @@ public class Shooting : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire1") && !reload)
+        ammoCount.text = (currentAmmo.ToString() + "/" + maxAmmo.ToString());
+
+        if (currentAmmo == 0)
         {
-
-            if (currentAmmo <= 0)
-            {
-                print("Reloading");
-                reload = true;
-                StartCoroutine("Reloading");
-            }
-            else
-            {
-                currentAmmo--;
-                ammoCount.text = (currentAmmo.ToString() + "/" + maxAmmo.ToString());
-                Shoot();
-            }
-
-            if (Input.GetKey(KeyCode.R))
-            {
-                reload = true;
-                StartCoroutine("Reloading");
-            }            
-        }
-
-        if(currentAmmo == 0)
-        {
+            //reloading.Play();
             Debug.Log("Reloading");
-            reload = true;
+            reload = true;            
             StartCoroutine("Reloading");
         }
+
+        if (Input.GetButtonDown("Fire1") && !reload)
+        {     
+            currentAmmo--;
+            ammoCount.text = (currentAmmo.ToString() + "/" + maxAmmo.ToString());
+            Shoot();
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            //reloading.Play();
+            reload = true;           
+            StartCoroutine("Reloading");
+        }
+
+
     }
     void Shoot()
     {
         int layer_mask = LayerMask.GetMask("Enemy");
+
+        shooting.Play();
 
         muzzle.Play();
 

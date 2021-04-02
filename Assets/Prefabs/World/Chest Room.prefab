@@ -21859,6 +21859,7 @@ GameObject:
   - component: {fileID: 9131314919559870317}
   - component: {fileID: 9131314920573153579}
   - component: {fileID: 3793666025753021388}
+  - component: {fileID: 9119009960890841696}
   m_Layer: 0
   m_Name: Chest Room
   m_TagString: Untagged
@@ -21901,6 +21902,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorways:
   - {fileID: 9131314921153939918}
+  - {fileID: 5266565615247943420}
+  - {fileID: 6848594611552653983}
+  - {fileID: 394063123335908766}
 --- !u!114 &3793666025753021388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21918,6 +21922,30 @@ MonoBehaviour:
   - {fileID: 1440813979029197135, guid: 596fa81ad575aab4eb2af023d9058928, type: 3}
   - {fileID: 8682328258377456091, guid: baf34c773a9bee042ba3b1f3d819bf8f, type: 3}
   spawn: {fileID: 336590712725738905}
+--- !u!167 &9119009960890841696
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9131314920573153576}
+  m_Enabled: 1
+  m_MinDistance: 0
+  m_MaxDistance: 30
+  m_ReverbPreset: 6
+  m_Room: -1000
+  m_RoomHF: -300
+  m_DecayTime: 2.31
+  m_DecayHFRatio: 0.64
+  m_Reflections: -711
+  m_ReflectionsDelay: 0.012
+  m_Reverb: 83
+  m_ReverbDelay: 0.017
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!1 &9131314920851928040
 GameObject:
   m_ObjectHideFlags: 0

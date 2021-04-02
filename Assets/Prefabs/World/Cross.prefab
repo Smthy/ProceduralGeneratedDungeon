@@ -2481,6 +2481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4470886895778991404}
   - component: {fileID: 1583402389832518129}
+  - component: {fileID: 4089360724252379825}
   m_Layer: 0
   m_Name: Cross
   m_TagString: Untagged
@@ -2526,6 +2527,30 @@ MonoBehaviour:
   - {fileID: 4470886896920984803}
   - {fileID: 4470886897245668935}
   - {fileID: 4470886895388572519}
+--- !u!167 &4089360724252379825
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4470886895778991405}
+  m_Enabled: 1
+  m_MinDistance: 0
+  m_MaxDistance: 30
+  m_ReverbPreset: 6
+  m_Room: -1000
+  m_RoomHF: -300
+  m_DecayTime: 2.31
+  m_DecayHFRatio: 0.64
+  m_Reflections: -711
+  m_ReflectionsDelay: 0.012
+  m_Reverb: 83
+  m_ReverbDelay: 0.017
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!1 &4470886895895974111
 GameObject:
   m_ObjectHideFlags: 0

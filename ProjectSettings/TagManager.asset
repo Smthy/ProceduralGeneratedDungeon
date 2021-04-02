@@ -11,6 +11,8 @@ TagManager:
   - AK
   - Potion
   - Key
+  - Arrow
+  - FinalDoor
   layers:
   - Default
   - TransparentFX

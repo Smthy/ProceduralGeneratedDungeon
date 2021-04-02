@@ -10,7 +10,6 @@ public class ARShooting : MonoBehaviour
     public float fireRate;
 
     public Camera FPS;
-
     public ParticleSystem muzzle;
 
     public int maxAmmo = 30;
@@ -24,6 +23,8 @@ public class ARShooting : MonoBehaviour
 
     public GameObject impact;
 
+    public AudioSource reloading, shooting;
+
     private void Start()
     {
         currentAmmo = maxAmmo;
@@ -32,33 +33,29 @@ public class ARShooting : MonoBehaviour
 
     private void Update()
     {
+        ammoCount.text = (currentAmmo.ToString() + "/" + maxAmmo.ToString());
+
         if (Input.GetButton("Fire1") && !reload && Time.time >= next)
         {
-            if (currentAmmo <= 0)
-            {
-                reload = true;
-                StartCoroutine("Reloading");
-            }
-            else
-            {
-                currentAmmo--;
-                ammoCount.text = (currentAmmo.ToString() + "/" + maxAmmo.ToString());
-                next = Time.time + 1f / fireRate;
-                Shoot();
-            }
+           currentAmmo--;
+           ammoCount.text = (currentAmmo.ToString() + "/" + maxAmmo.ToString());
+           next = Time.time + 1f / fireRate;
+           Shoot();
+        }
 
-            if (Input.GetKey(KeyCode.R))
-            {
-                reload = true;
-                StartCoroutine("Reloading");
-            }
+        if (Input.GetKey(KeyCode.R))
+        {
+            reload = true;
+            //reloading.Play();
+            StartCoroutine("Reloading");
+        }
 
-            if (currentAmmo == 0)
-            {
-                Debug.Log("Reloading");
-                reload = true;
-                StartCoroutine("Reloading");
-            }
+        if (currentAmmo == 0)
+        {
+            Debug.Log("Reloading");
+            reload = true;
+            //reloading.Play();
+            StartCoroutine("Reloading");
         }
     }
     void Shoot()
@@ -66,6 +63,7 @@ public class ARShooting : MonoBehaviour
         int layer_mask = LayerMask.GetMask("Enemy");
 
         muzzle.Play();
+        shooting.Play();
 
         RaycastHit hit;
         if (Physics.Raycast(FPS.transform.position, FPS.transform.forward, out hit, range, layer_mask))
@@ -83,7 +81,7 @@ public class ARShooting : MonoBehaviour
     }
 
     IEnumerator Reloading()
-    {
+    {        
         yield return new WaitForSeconds(3f);
         currentAmmo = maxAmmo;
         ammoCount.text = (currentAmmo.ToString() + "/" + maxAmmo.ToString());

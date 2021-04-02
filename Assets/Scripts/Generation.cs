@@ -36,14 +36,14 @@ public class Generation : MonoBehaviour
         cam.enabled = true;
         canvas.enabled = false;
         dunLayer = LayerMask.GetMask("Dungeon");
+        RenderSettings.fog = false;
+
+        StartCoroutine("DungeonGeneration");
     }
 
     void Start()
     {
-        RenderSettings.fog = false;
-        StartCoroutine("DungeonGeneration");
-        
-
+              
     }
 
     void Update()
