@@ -996,7 +996,7 @@ Rigidbody:
   m_AngularDrag: 2
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!114 &521300166
@@ -1391,6 +1391,7 @@ GameObject:
   - component: {fileID: 833704365}
   - component: {fileID: 833704364}
   - component: {fileID: 833704366}
+  - component: {fileID: 833704367}
   m_Layer: 9
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1464,6 +1465,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   main: {fileID: 1140842818}
   player: {fileID: 409768975}
+--- !u!167 &833704367
+AudioReverbZone:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833704363}
+  m_Enabled: 1
+  m_MinDistance: 100000
+  m_MaxDistance: 100000
+  m_ReverbPreset: 6
+  m_Room: -1000
+  m_RoomHF: -300
+  m_DecayTime: 2.31
+  m_DecayHFRatio: 0.64
+  m_Reflections: -711
+  m_ReflectionsDelay: 0.012
+  m_Reverb: 83
+  m_ReverbDelay: 0.017
+  m_HFReference: 5000
+  m_Diffusion: 100
+  m_Density: 100
+  m_LFReference: 250
+  m_RoomLF: 0
 --- !u!1 &890688847
 GameObject:
   m_ObjectHideFlags: 0

@@ -1660,7 +1660,7 @@ Rigidbody:
   m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!208 &8904743562882758695
@@ -1789,7 +1789,7 @@ Rigidbody:
   m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!208 &2409332033993332923
@@ -1918,7 +1918,7 @@ Rigidbody:
   m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!208 &8369205321914924513
@@ -2250,7 +2250,7 @@ Rigidbody:
   m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!208 &1053773946393708565
@@ -2379,7 +2379,7 @@ Rigidbody:
   m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!208 &1160537710568124137
@@ -2508,7 +2508,7 @@ Rigidbody:
   m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!208 &2388967571939905148
@@ -2637,7 +2637,7 @@ Rigidbody:
   m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!208 &3203770370317688565
@@ -2766,7 +2766,7 @@ Rigidbody:
   m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!208 &8259684780229128282
@@ -5614,7 +5614,7 @@ Rigidbody:
   m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!208 &1490161965649399791
@@ -6054,7 +6054,7 @@ Rigidbody:
   m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!208 &4459736504240166198
@@ -7707,7 +7707,7 @@ Rigidbody:
   m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!208 &6166193738847733902
@@ -7931,9 +7931,9 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!208 &3159342538960825689
 NavMeshObstacle:
   m_ObjectHideFlags: 0

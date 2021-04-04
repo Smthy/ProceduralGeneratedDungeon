@@ -75,7 +75,7 @@ MonoBehaviour:
     spatialBlend: 1
   - name: BackgroundNoise
     clip: {fileID: 8300000, guid: 7d5299167b079db40a3eaf8359f73375, type: 3}
-    volume: 0.075
+    volume: 0.05
     pitch: 1
     loop: 1
     source: {fileID: 0}
